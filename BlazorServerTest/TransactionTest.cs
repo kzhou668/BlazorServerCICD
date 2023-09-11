@@ -13,7 +13,7 @@ namespace AdoNetConsoleApplication
             {
                 /* Perform transactional work here */
                 SomeMethod();
-                scope.Complete();
+                scope.Complete(); 
             }
         }
 
