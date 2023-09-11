@@ -1,0 +1,149 @@
+﻿@page "/fetchdata"
+
+<PageTitle>Weather forecast</PageTitle>
+
+@using BlazorServerTest.Data
+@inject WeatherForecastService ForecastService
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <Table TItem="WeatherForecast" 
+           IsPagination="true" PageItemsSource="@PageItemsSource"
+           IsStriped="true" IsBordered="true" IsMultipleSelect="true" ShowSkeleton="true" 
+           OnQueryAsync="@OnQueryAsync"
+           >
+        <TableColumns>
+            <TableColumn @bind-Field="@context.Date" Width="180" Sortable="true" Filterable="true" />
+            <TableColumn @bind-Field="@context.TemperatureC" Width="180" Sortable="true" Filterable="true" />
+            <TableColumn @bind-Field="@context.Summary" Width="180" Sortable="true" Filterable="true" />
+        </TableColumns>
+    </Table>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private static IEnumerable<int> PageItemsSource => new int[] { 4, 10, 20 };
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+
+    private Task<QueryData<WeatherForecast>> OnQueryAsync(QueryPageOptions options)
+    {
+
+        IEnumerable<WeatherForecast> items = forecasts;
+
+        // 过滤
+        var isFiltered = false;
+        if (options.Filters.Any())
+        {
+            items = items.Where(options.Filters.GetFilterFunc<WeatherForecast>());
+            isFiltered = true;
+        }
+
+        // 排序
+        var isSorted = false;
+        if (options.SortName == nameof(WeatherForecast.Date) && options.SortList != null)
+        {
+            var sortInvoker = Utility.GetSortListFunc<WeatherForecast>();
+            items = sortInvoker(items, options.SortList);
+            isSorted = true;
+        }
+        else if (!string.IsNullOrEmpty(options.SortName))
+        {
+            // 外部未进行排序，内部自动进行排序处理
+            var invoker = Utility.GetSortFunc<WeatherForecast>();
+            items = invoker(items, options.SortName, options.SortOrder);
+            isSorted = true;
+        }
+
+        // 设置记录总数
+        var total = items.Count();
+
+        // 内存分页
+        items = items.Skip((options.PageIndex - 1) * options.PageItems).Take(options.PageItems).ToList();
+
+        return Task.FromResult(new QueryData<WeatherForecast>()
+        {
+            Items = items,
+            TotalCount = total,
+            IsSorted = isSorted,
+            IsFiltered = isFiltered
+        });
+    }
+
+    private static string OnSort(string sortName, SortOrder sortOrder)
+    {
+        string sortString = "";
+        if (sortName == nameof(WeatherForecast.Date))
+        {
+            if (sortOrder == SortOrder.Asc)
+            {
+                sortString = "Date, Count";
+            }
+            else if (sortOrder == SortOrder.Desc)
+            {
+                sortString = "Date desc, Count desc";
+            }
+            else
+            {
+                sortString = "Date desc, Count";
+            }
+        }
+        return sortString;
+    }
+
+    private Table<WeatherForecast>? TableSetFilter { get; set; }
+
+    private async Task SetFilterInCode()
+    {
+        //Find Column
+        var column = TableSetFilter.Columns.First(x => x.GetFieldName() == nameof(WeatherForecast.TemperatureC));
+
+        //Build Filter
+        var filters = new List<FilterKeyValueAction>()
+        {
+            new FilterKeyValueAction { FieldValue = "01", FilterAction = FilterAction.Contains }
+        };
+
+        //Set Filter
+        var filterAction = column.Filter?.FilterAction;
+        if (filterAction != null)
+        {
+            await filterAction.SetFilterConditionsAsync(filters);
+        }
+    }
+
+    private Task ResetAllFilters() => TableSetFilter.ResetFilters();
+}
