@@ -1,0 +1,60 @@
+﻿@page
+@model Resmed.MSP.LSR.UI.Pages.Lookups.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Lookup[0].AppName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lookup[0].FieldName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lookup[0].FieldValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lookup[0].DisplayOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lookup[0].IsActive)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Lookup) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FieldName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FieldValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DisplayOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.AutoId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.AutoId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.AutoId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,140 @@
+﻿@page
+@model Resmed.MSP.LSR.UI.Pages.DowntimeForms.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>DowntimeForm</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DowntimeForm.AutoId" />
+            <div class="form-group">
+                <label asp-for="DowntimeForm.FormId" class="control-label"></label>
+                <input asp-for="DowntimeForm.FormId" class="form-control" />
+                <span asp-validation-for="DowntimeForm.FormId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.WorkOrderNo" class="control-label"></label>
+                <input asp-for="DowntimeForm.WorkOrderNo" class="form-control" />
+                <span asp-validation-for="DowntimeForm.WorkOrderNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.PartNo" class="control-label"></label>
+                <input asp-for="DowntimeForm.PartNo" class="form-control" />
+                <span asp-validation-for="DowntimeForm.PartNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.MachineNo" class="control-label"></label>
+                <input asp-for="DowntimeForm.MachineNo" class="form-control" />
+                <span asp-validation-for="DowntimeForm.MachineNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.ToolNo" class="control-label"></label>
+                <input asp-for="DowntimeForm.ToolNo" class="form-control" />
+                <span asp-validation-for="DowntimeForm.ToolNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.Cell" class="control-label"></label>
+                <input asp-for="DowntimeForm.Cell" class="form-control" />
+                <span asp-validation-for="DowntimeForm.Cell" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.Product" class="control-label"></label>
+                <input asp-for="DowntimeForm.Product" class="form-control" />
+                <span asp-validation-for="DowntimeForm.Product" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.CycleTime" class="control-label"></label>
+                <input asp-for="DowntimeForm.CycleTime" class="form-control" />
+                <span asp-validation-for="DowntimeForm.CycleTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.OpsDate" class="control-label"></label>
+                <input asp-for="DowntimeForm.OpsDate" class="form-control" />
+                <span asp-validation-for="DowntimeForm.OpsDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.DownTime" class="control-label"></label>
+                <input asp-for="DowntimeForm.DownTime" class="form-control" />
+                <span asp-validation-for="DowntimeForm.DownTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.DownTimeText" class="control-label"></label>
+                <input asp-for="DowntimeForm.DownTimeText" class="form-control" />
+                <span asp-validation-for="DowntimeForm.DownTimeText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.DownDuration" class="control-label"></label>
+                <input asp-for="DowntimeForm.DownDuration" class="form-control" />
+                <span asp-validation-for="DowntimeForm.DownDuration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.DownReasons" class="control-label"></label>
+                <input asp-for="DowntimeForm.DownReasons" class="form-control" />
+                <span asp-validation-for="DowntimeForm.DownReasons" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.UpTime" class="control-label"></label>
+                <input asp-for="DowntimeForm.UpTime" class="form-control" />
+                <span asp-validation-for="DowntimeForm.UpTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.UpTimeText" class="control-label"></label>
+                <input asp-for="DowntimeForm.UpTimeText" class="form-control" />
+                <span asp-validation-for="DowntimeForm.UpTimeText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.ActionDetails" class="control-label"></label>
+                <input asp-for="DowntimeForm.ActionDetails" class="form-control" />
+                <span asp-validation-for="DowntimeForm.ActionDetails" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.OperatorName" class="control-label"></label>
+                <input asp-for="DowntimeForm.OperatorName" class="form-control" />
+                <span asp-validation-for="DowntimeForm.OperatorName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.TimeZoom" class="control-label"></label>
+                <input asp-for="DowntimeForm.TimeZoom" class="form-control" />
+                <span asp-validation-for="DowntimeForm.TimeZoom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.CreatedDate" class="control-label"></label>
+                <input asp-for="DowntimeForm.CreatedDate" class="form-control" />
+                <span asp-validation-for="DowntimeForm.CreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.CreatedBy" class="control-label"></label>
+                <input asp-for="DowntimeForm.CreatedBy" class="form-control" />
+                <span asp-validation-for="DowntimeForm.CreatedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.UpdatedDate" class="control-label"></label>
+                <input asp-for="DowntimeForm.UpdatedDate" class="form-control" />
+                <span asp-validation-for="DowntimeForm.UpdatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DowntimeForm.UpdatedBy" class="control-label"></label>
+                <input asp-for="DowntimeForm.UpdatedBy" class="form-control" />
+                <span asp-validation-for="DowntimeForm.UpdatedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

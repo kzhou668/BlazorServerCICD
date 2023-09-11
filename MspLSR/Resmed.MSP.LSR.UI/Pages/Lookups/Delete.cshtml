@@ -1,0 +1,52 @@
+﻿@page
+@model Resmed.MSP.LSR.UI.Pages.Lookups.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Lookup</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lookup.AppName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lookup.AppName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lookup.FieldName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lookup.FieldName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lookup.FieldValue)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lookup.FieldValue)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lookup.DisplayOrder)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lookup.DisplayOrder)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lookup.IsActive)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lookup.IsActive)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Lookup.AutoId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
