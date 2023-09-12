@@ -13,6 +13,12 @@ namespace xUnitTest
         [Fact]
         public void Test2()
         {
+            Assert.Equal(1, -1);
+        }
+
+        [Fact( Skip = "This is to skip")]
+        public void Test3()
+        {
             Assert.Equal(1, 1);
         }
     }
